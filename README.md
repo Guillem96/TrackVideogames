@@ -7,4 +7,4 @@ Aplicació web per tal de poder tenir un llistat dels jocs els quals has complet
 
 ## Model Database
 
-![uml_database_model]("design/uml_track_videogames.png")
+![uml_database_model](design/uml_track_videogames.png)
