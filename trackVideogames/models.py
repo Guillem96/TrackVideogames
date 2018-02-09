@@ -35,7 +35,7 @@ class Videogame(models.Model):
         return u"%s" % self.name
 
 
-class Videogame_review(models.Model):
+class VideogameReview(models.Model):
     RATING_CHOICES = ((1, 'one'), (2, 'two'), (3, 'three'), (4, 'four'), (5, 'five'))
     user = models.ForeignKey(User, default=1)
     videogame = models.ForeignKey(Videogame, default=1)
