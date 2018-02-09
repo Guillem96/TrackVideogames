@@ -5,3 +5,6 @@ Pràctica Models de Procés.
 
 Aplicació web per tal de poder tenir un llistat dels jocs els quals has completat i els que pretens completar, afegint-hi una petita valoració
 
+## Model Database
+
+![alt text]("/design/uml_track_videogames.png")
