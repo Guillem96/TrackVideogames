@@ -24,10 +24,9 @@ class Videogame(models.Model):
     videogame_id = models.IntegerField(primary_key=True)
     name = models.TextField()
     summary = models.TextField()
-    realeased = models.DateField()
-    cover = models.ImageField()
-    genre = models.ForeignKey(Genre, default=1)
-    duration = models.IntegerField()
+    realeased = models.DateField(null=True)
+    cover = models.ImageField(upload_to="trackVideogames")
+    genre = models.ManyToManyField(Genre)
     user = models.ForeignKey(User, default=1)
     themes = models.ManyToManyField(Theme)
 
@@ -41,6 +40,7 @@ class VideogameReview(models.Model):
     videogame = models.ForeignKey(Videogame, default=1)
     rating = models.PositiveSmallIntegerField('Rating (stars)', blank=False, default=3, choices=RATING_CHOICES)
     date = models.DateField()
-    
+    time_to_beat = models.IntegerField()
+
     class Meta:
         unique_together = ("videogame", "user")
