@@ -1,0 +1,89 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block styles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static "css/base.css" %}"> 
+    {% endblock %}
+    <link rel="shortcut icon" href="{% static "img/icon.svg" %}" />
+    <title>{% block title %}Track your videogames{% endblock %}</title>
+</head>
+
+<body>
+
+    <div id="header">
+        {% block header %}
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="navbar-brand">
+                <img class="navbar-brand" src="{% static "img/icon.svg" %}" width="40" alt=""> Track your Videogames
+            </div>
+            <div class="user-info">
+                {% if user.username %}
+                <div class="display-5 text-white">
+                    <i class="fa fa-user"></i> {{ user.username }}
+                    <a class="btn btn-outline-danger my-2 my-sm-0" href="{% url 'logout' %}?next={{request.path}}">Logout
+                        <i class="fa fa-sign-out-alt"></i>
+                    </a>
+                </div>
+                {% else %}
+                <div>
+                    <a class="btn btn-outline-success my-2 my-sm-0" href="{% url 'login' %}?next={{request.path}}">Login
+                        <i class="fa fa-sign-in-alt"></i>
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+            <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="fa fa-bars text-white"></span>
+            </button>
+
+            <div class="navbar-collapse collapse" id="navbarsExample01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/trackVideogames/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/trackVideogames/pendent/">Videojocs pendents</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/trackVideogames/done/">Videojocs acabats</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        {% endblock %}
+    </div>
+
+    <div id="content" class="container">
+        {% block content %} {% if error_message %}
+        <p>
+            <strong>{{ error_message }}</strong>
+        </p>{% endif %} {% endblock %}
+    </div>
+    <footer id="footer" class="footer">
+            {% block footer %}
+            <div class="container">
+                <p class="text-white text-center">
+                    Pàgina creada per Guillem Orellana Trullols. 
+                    Veure <a href="https://github.com/Guillem96/TrackVideoGames">Github</a> <i class="fab fa-github-alt"></i>
+                </p>
+            </div>
+            {% endblock %}
+        </footer>
+</body>
+
+{% block scripts %}
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+{% endblock %}
+
+</html>
