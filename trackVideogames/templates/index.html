@@ -41,11 +41,16 @@
 </div>
 
 <div class="w3-row">
-    {% for vg in videogames %}
-    <div class="w3-col l4 s6">
-        <p>{{ vg.name }}</p>
-    </div>   
-    {% empty %}<li>Sorry, no vg registered yet.</li>
-    {% endfor %}
+    <div class="w3-col l3 w3-blue">
+        <p>provant</p>
+    </div>
+    <div class="w3-col l9">
+        <div class="row">
+            {% for vg in videogames %}
+                {% include "subTemplates/game_node.html" %}
+            {% endfor %}
+        </div>
+        {% include "subTemplates/videogames_pagination.html" %}
+    </div>
 </div>
 {% endblock %}

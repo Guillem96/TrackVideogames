@@ -1,0 +1,30 @@
+<div class="col-lg-3 w3-margin-bottom node table-responsive animated fadeIn">
+    <div class="icon">
+        {% if vg.cover %}
+        <img src="{{ vg.cover.url }}" alt="">
+        {% endif %}
+    </div>
+    <table class="table table-borderless">
+        <thead>
+            <tr colspan="2">
+                <td colspan="2" class="text-center text-capitalize">
+                    {{ vg.name }}
+                </td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="text-left">Llançat:</td>
+                <td class="text-right">{{ vg.released }}</td>
+            </tr>
+            <tr>
+                <td class="text-left">Tema:</td>
+                <td class="text-right">{% for t in vg.themes.all %}{{ t.name }} {% endfor %}</td>            
+            </tr>
+            <tr>
+                <td class="text-left">Gènere:</td>
+                <td class="text-right">{% for g in vg.genres.all %}{{ g.name }} {% endfor %}</td>            
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -3,8 +3,11 @@
     margin-right: 20px;
 }
 
+body {
+    padding-bottom: 100px;
+}
 .footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
     height: 60px;
@@ -48,6 +51,10 @@
     background-position: center center;  
     color: black;
     height: 350px;
+}
+
+.homepage {
+    margin-bottom: 50px;
 }
 
 .homepage p {

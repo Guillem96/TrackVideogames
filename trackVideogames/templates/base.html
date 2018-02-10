@@ -8,6 +8,7 @@
         crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static "css/base.css" %}"> 
+    <link rel="stylesheet" href="{% static "css/node.css" %}"> 
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
     {% endblock %}
     <link rel="shortcut icon" href="{% static "img/icon.svg" %}" />
@@ -66,16 +67,16 @@
             <strong>{{ error_message }}</strong>
         </p>{% endif %} {% endblock %}
     </div>
-    <footer id="footer" class="footer">
-            {% block footer %}
-            <div class="container">
-                <p class="text-white text-center">
-                    Pàgina creada per Guillem Orellana Trullols. 
-                    Veure <a href="https://github.com/Guillem96/TrackVideoGames">Github</a> <i class="fab fa-github-alt"></i>
-                </p>
-            </div>
-            {% endblock %}
-        </footer>
+    <div id="footer" class="footer">
+        {% block footer %}
+        <div class="container">
+            <p class="text-white text-center">
+                Pàgina creada per Guillem Orellana Trullols. 
+                Veure <a href="https://github.com/Guillem96/TrackVideoGames">Github</a> <i class="fab fa-github-alt"></i>
+            </p>
+        </div>
+        {% endblock %}
+    </div>
 </body>
 
 {% block scripts %}

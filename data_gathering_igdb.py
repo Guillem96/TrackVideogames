@@ -5,32 +5,38 @@ import django
 from django.core.files import File
 from django.core.files.temp import NamedTemporaryFile
 import requests
-import urlparse
+import urlparse, time
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "PracticaPrevia.settings")
 django.setup()
 
 from trackVideogames import models
 
-igdb = igdb('b39ab80da1d9eac24dc7ae18954930c0')
+igdb = igdb('b02020302a12a382f5f3b9a8af01d945')
 
 def save_image_from_url(field, url, image_name):
-    if "https" not in url:
-        r = requests.get("http:" + url)
-    else:
-        r = requests.get(url)
+    try:
+        if "https" not in url:
+            r = requests.get("http:" + url)
+        else:
+            r = requests.get(url)
 
-    if r.status_code == requests.codes.ok:
+        if r.status_code == requests.codes.ok:
 
-        img_temp = NamedTemporaryFile(delete = True)
-        img_temp.write(r.content)
-        img_temp.flush()
+            img_temp = NamedTemporaryFile(delete = True)
+            img_temp.write(r.content)
+            img_temp.flush()
 
-        field.save(image_name + "." + url.split(".")[-1], File(img_temp), save = True)
+            field.save(image_name + "." + url.split(".")[-1], File(img_temp), save = True)
 
-        return True
-
-    return False
+            return True
+    except:
+        print("Connection refused by the server..")
+        print("Let me sleep for 5 seconds")
+        print("ZZzzzz...")
+        time.sleep(1)
+        print("Was a nice sleep, now let me continue...")    
+        return False
 
 
 def get_genres():
@@ -77,7 +83,7 @@ def get_video_games():
 
             if "genres" in game:
                 for gen in game["genres"]:
-                    g.genre.add(models.Genre.objects.get(genre_id=gen))
+                    g.genres.add(models.Genre.objects.get(genre_id=gen))
                     
         counter -= 1
         offset += 50

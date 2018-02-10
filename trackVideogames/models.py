@@ -24,9 +24,9 @@ class Videogame(models.Model):
     videogame_id = models.IntegerField(primary_key=True)
     name = models.TextField()
     summary = models.TextField()
-    realeased = models.DateField(null=True)
+    released = models.DateField(null=True)
     cover = models.ImageField(upload_to="trackVideogames")
-    genre = models.ManyToManyField(Genre)
+    genres = models.ManyToManyField(Genre)
     user = models.ForeignKey(User, default=1)
     themes = models.ManyToManyField(Theme)
 
