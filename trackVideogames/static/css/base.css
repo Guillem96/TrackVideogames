@@ -11,3 +11,46 @@
     line-height: 60px;
     background-color: #343a40 ;
 }
+
+.gestiona {
+    background-image: url("../img/video-games.jpg");
+    background-repeat:   no-repeat;
+    background-position: left center;
+    height: 400px;
+    color:black;
+}
+
+.note {
+    background-color: rgba(126, 192, 123, 0.7);
+}
+
+.review-note {
+    background-color: rgba(26, 206, 238, 0.7);
+}
+
+.forget-note {
+    background-color: rgba(161, 108, 83, 0.7);
+}
+
+.reviews {
+    background-image: url("../img/review-column.png");
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;  
+    color: black;
+    height: 350px;
+}
+
+.forget {
+    background-image: url("../img/forget.jpg");
+    background-size:     cover;                      /* <------ */
+    background-repeat:   no-repeat;
+    background-position: center center;  
+    color: black;
+    height: 350px;
+}
+
+.homepage p {
+    font-size: 20px;
+    line-height: 30px;
+}

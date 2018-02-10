@@ -8,6 +8,7 @@
         crossorigin="anonymous">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="{% static "css/base.css" %}"> 
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
     {% endblock %}
     <link rel="shortcut icon" href="{% static "img/icon.svg" %}" />
     <title>{% block title %}Track your videogames{% endblock %}</title>
@@ -45,13 +46,13 @@
             <div class="navbar-collapse collapse" id="navbarsExample01">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/trackVideogames/">Home</a>
+                        <a class="nav-link" href="/trackVideogames/"><i class="fa fa-home"></i> Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/trackVideogames/pendent/">Videojocs pendents</a>
+                        <a class="nav-link" href="/trackVideogames/pendent/"><i class="fa fa-clock"></i> Videojocs pendents</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/trackVideogames/done/">Videojocs acabats</a>
+                        <a class="nav-link" href="/trackVideogames/done/"><i class="fa fa-check-circle"></i> Videojocs acabats</a>
                     </li>
                 </ul>
             </div>
@@ -59,7 +60,7 @@
         {% endblock %}
     </div>
 
-    <div id="content" class="container">
+    <div id="content" class="w3-container">
         {% block content %} {% if error_message %}
         <p>
             <strong>{{ error_message }}</strong>

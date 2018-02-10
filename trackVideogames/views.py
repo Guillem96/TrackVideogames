@@ -10,6 +10,7 @@ from django.shortcuts import get_object_or_404
 from django.utils.decorators import method_decorator
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, UpdateView
+from trackVideogames.models import *
 
 # Security Mixins
 class LoginRequiredMixin(object):
@@ -30,8 +31,10 @@ class LoginRequiredCheckIsOwnerUpdateView(LoginRequiredMixin, CheckIsOwnerMixin,
 
 # Create your views here.
 def home_page(request):
+    context = {'videogames': Videogame.objects.all() }
     return render(
         request,
         'index.html',
+        context
     )
 

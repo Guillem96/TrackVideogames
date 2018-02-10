@@ -1,9 +1,51 @@
 {% extends "base.html" %}
 
+{% load staticfiles %}
+
 {% block content %}
-<div class="row">
-    <div class="col-lg-12 display-3">Gestiona els teus videojocs</div>
-    <div class="col-lg-8">Afegeix valoracions als videojocs completats</div>
-    <div class="col-lg-4">No t'oblidis mai de jugar a un joc que has comprat</div>
+<div class="w3-row-padding homepage">
+    <div class="w3-col l12 s12  w3-display-container gestiona w3-opacity-min w3-hover-opacity-off">
+        <div class="w3-display-bottomleft w3-container">
+            <div class="note w3-panel w3-leftbar w3-rightbar w3-border-green">
+                <h1><i class="fa fa-folder"></i> Gestiona els teus videojocs</h1>
+                <p>
+                    No perdis mai de vista els jocs que ja has completat. En aquesta web podràs portar un contral de forma detallada de tots els
+                    videojocs que has completat o vulguis completar, d'aquesta manera podràs enrecordarte'n sempre dels jocs que t'han pogut marcar o també 
+                    dels jocs que has odiat i que no recomanaries mai a ningú.
+                </p>
+            </div>  
+        </div>
+    </div>
+    <div class="w3-col l8 s8  w3-display-container reviews w3-opacity-min w3-hover-opacity-off">
+        <div class="w3-display-bottomleft w3-container w3-opacity-off">
+            <div class="review-note w3-panel w3-leftbar w3-rightbar w3-border-blue">
+                <h1><i class="fa fa-star"></i> Valora els videojocs completats</h1>
+                <p>
+                    Una vegada hagis completat un videojoc. Busca'l en el llistat de videojocs disponibles de la web o, ja prèviament afegit a la teva llsita de pendents, 
+                    i afegeix-lo a la teva llista de completats tot valorant el videojoc amb una punctuació de 0-5 i els comentaris que et seblin més oportuns.
+                </p>
+            </div>  
+        </div>
+    </div>
+    <div class="w3-col l4 s4 w3-display-container  forget w3-opacity-min w3-hover-opacity-off">
+        <div class="w3-display-bottomleft w3-container w3-opacity-off">
+            <div class="forget-note w3-panel w3-leftbar w3-rightbar w3-border-orange">
+                <h1><i class="fa fa-clock"></i> No te'n oblidis</h1> 
+                <p>
+                    Quan compris un joc nou el podràs afegir a la llista de videojocs pendents amb la data en la qual hi pretens jugar. 
+                    Quan arribi el dia de jugar a un joc de la teva llista de pendents es mostrarà amb una notificació.
+                </p>
+            </div>  
+        </div>
+    </div>
+</div>
+
+<div class="w3-row">
+    {% for vg in videogames %}
+    <div class="w3-col l4 s6">
+        <p>{{ vg.name }}</p>
+    </div>   
+    {% empty %}<li>Sorry, no vg registered yet.</li>
+    {% endfor %}
 </div>
 {% endblock %}
