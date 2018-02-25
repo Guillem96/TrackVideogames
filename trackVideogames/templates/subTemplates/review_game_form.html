@@ -1,10 +1,52 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load staticfiles %}
+
+<div id="review-form" class="w3-modal w3-animate-bottom w3-card-4">
+    <div class="w3-modal-content w3-margin-bottom">
+        <header class="w3-container w3-dark-gray">
+        <span onclick="document.getElementById('review-form').style.display='none'" class="w3-button w3-display-topright" title="Close Modal">
+            <i class="fa fa-times"></i>
+        </span>
+        <h2><img src="{% static "img/icon.svg" %}" width="40"> Valorar un videojoc</h2>
+    </header>
+    <form id="review-from-form" class="w3-container w3-padding" method="post" action="">
+        <p>
+            <label class="w3-xlarge">Videojoc</label>
+            <div class="w3-row">
+                <div class="w3-twothird">
+                    <input id="vg-name" type="text" class="w3-input" placeholder="Títol videojoc">
+                </div>
+                <div class="w3-third w3-display-container">
+                    <img class="vg-cover w3-display-topmiddle w3-card-4" src="">
+                </div>
+            </div>
+        </p>
+        <p>
+            <label class="w3-xlarge">Opinió sobre el videojoc</label>
+            <textarea id="comment" name="comment" type="text" class="w3-input" placeholder="Comentari..."></textarea>
+        </p>
+        <p>
+            <label class="w3-xlarge">Temps dedicat</label>
+            <input id="time-to-beat" name="time-to-beat" type="text" class="w3-input" placeholder="13h 25min">
+        </p>
+        <p>
+            <label class="w3-xlarge">Puntuació</label>
+            <div class="stars w3-left">
+                <input type="radio" name="rating" value="1" class="star-1" id="star-1" />
+                <label class="star-1" for="star-1">1</label>
+                <input type="radio" name="rating" value="2" class="star-2" id="star-2" />
+                <label class="star-2" for="star-2">2</label>
+                <input type="radio" name="rating" value="3" class="star-3" id="star-3" />
+                <label class="star-3" for="star-3">3</label>
+                <input type="radio" name="rating" value="4" class="star-4" id="star-4" />
+                <label class="star-4" for="star-4">4</label>
+                <input type="radio" name="rating" value="5" class="star-5" id="star-5" />
+                <label class="star-5" for="star-5">5</label>
+                <span></span>
+            </div>
+        </p>
+        <a class="w3-button w3-right w3-blue w3-margin-left create-review-button">Afegir a completats</a>
+        <a class="w3-button w3-right w3-red" onclick="document.getElementById('review-form').style.display='none'">Cancel·lar</a>
+        {% csrf_token %}
+    </form>
+    </div>
+</div>

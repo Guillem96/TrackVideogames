@@ -1,30 +1,81 @@
-<div class="col-lg-3 w3-margin-bottom node table-responsive animated fadeIn">
+{% load staticfiles %}
+{% load math %}
+{% if vg.comment %}
+<div class="w3-margin-bottom node animated fadeIn w3-display-container" data-toggle="tooltip" data-placement="right" title="Comentari: {{ vg.comment }}">
+{% else %}
+    <div class="w3-margin-bottom node animated fadeIn w3-display-container">
+{% endif %}
+
     <div class="icon">
+        {% if vg.videogame.cover %}
+            <img src="{{ vg.videogame.cover.url }}" alt="">
+        {% endif %}
         {% if vg.cover %}
-        <img src="{{ vg.cover.url }}" alt="">
+            <img src="{{ vg.cover.url }}" alt="">
+        {% endif %}
+        {% if not vg.cover and not vg.videogame.cover %}
+            <img src="{% static 'img/no-image.png' %}" width="90" alt="">
         {% endif %}
     </div>
     <table class="table table-borderless">
         <thead>
             <tr colspan="2">
                 <td colspan="2" class="text-center text-capitalize">
-                    {{ vg.name }}
+                    {% if vg.videogame.name %}
+                        {{ vg.videogame.name }}
+                    {% endif %}
+                    {% if vg.name %}
+                        {{ vg.name }}
+                    {% endif %}
                 </td>
             </tr>
         </thead>
         <tbody>
-            <tr>
+        {# Si el joc es una review #}
+        {% if vg.videogame %}
+            {# Si el joc esta completat mostrem la puntuació, el temps dedicat i que cal mantenir per tal de veure el comentari #}
+            {% if vg.completed %}
+                <tr>
+                    <td class="text-left">Puntuació:</td>
+                    <td class="text-right">{% for t in "x"|rjust:vg.rating %} <i class="fa fa-star w3-text-yellow w3-large"></i> {% endfor %}</td>
+                </tr>
+                <tr>
+                    <td class="text-left">Temps dedicat:</td>
+                    <td class="text-right">{{ vg.time_to_beat|div:60 }}h {{ vg.time_to_beat|mod:60 }}min</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="w3-center">
+                        Mantenir per veure la opinió
+                    </td>
+                </tr>
+            {% else %}{# Si el joc no esta completat mostrem la data en que s'ha de jugar #}
+                 <tr>
+                    <td class="text-left">Data pendent:</td>
+                    <td class="text-right">{{ vg.date }}</td>
+                </tr>
+            {% endif %}
+        {% else %}
+             <tr>
                 <td class="text-left">Llançat:</td>
                 <td class="text-right">{{ vg.released }}</td>
             </tr>
             <tr>
                 <td class="text-left">Tema:</td>
-                <td class="text-right">{% for t in vg.themes.all %}{{ t.name }} {% endfor %}</td>            
+                <td class="text-right">{% for t in vg.themes.all %}{{ t.name }} {% endfor %}</td>
             </tr>
             <tr>
                 <td class="text-left">Gènere:</td>
-                <td class="text-right">{% for g in vg.genres.all %}{{ g.name }} {% endfor %}</td>            
+                <td class="text-right">{% for g in vg.genres.all %}{{ g.name }} {% endfor %}</td>
             </tr>
+        {% endif %}
         </tbody>
     </table>
+    <div class="node-btns">
+    {% if vg.comment %}
+        <button onclick="deleteReview({{ vg.pk }}, '{{ vg.videogame.name }}')" class="w3-button w3-xlarge w3-circle w3-gray w3-text-white w3-hover-red"><i class="fa fa-trash"></i></button>
+    {% elif vg.date %}
+        <button class="w3-button w3-xlarge w3-circle w3-gray w3-text-white w3-hover-amber square"  onclick="addToComplete({{ vg.videogame.videogame_id}}, '{{ vg.videogame.name }}')"><i class="fa fa-star"></i></button>
+        <button class="w3-button w3-xlarge w3-circle w3-gray w3-text-white w3-hover-red" onclick="deleteReview({{ vg.pk }}, '{{ vg.videogame.name }}')"><i class="fa fa-trash"></i></button>
+    {% endif %}
+    </div>
 </div>

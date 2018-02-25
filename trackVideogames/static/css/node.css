@@ -76,3 +76,16 @@
     border: none !important;
 }
 
+
+.square {
+    height: 50px;
+    width: 50px;
+    padding-left: 11px;
+}
+
+.node .node-btns {
+    position: relative;
+    top: -25px;
+    float: right;
+    display: block;
+}

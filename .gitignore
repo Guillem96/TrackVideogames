@@ -2,6 +2,7 @@ media/
 trackVideogames/migrations/
 trackVideogames/*.pyc
 PracticaPrevia/*.pyc
+.idea/
 
 # Created by https://www.gitignore.io/api/django,python
 

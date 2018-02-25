@@ -1,18 +1,30 @@
 <div class="w3-bar w3-center">
     {% if videogames.has_previous %}
-        <a href="?page={{ videogames.previous_page_number }}" class="w3-button w3-hover-purple fa fa-angle-left"></a>
+        {% if query != "" %}
+            <a href="?page={{ videogames.previous_page_number }}&{{ query }}" class="w3-button w3-hover-purple fa fa-angle-left"></a>
+        {% else %}
+            <a href="?page={{ videogames.previous_page_number }}" class="w3-button w3-hover-purple fa fa-angle-left"></a>
+        {% endif %}
     {% else %}
         <a href="#" class="w3-button w3-hover-purple fa fa-angle-left w3-disabled"></a>
     {% endif %}
     {% for current_page in videogames.paginator.page_range %}
-    {% if current_page != videogames.number %}
-        <a class="w3-button w3-hover-red" href="?page={{ current_page }}">{{ current_page }}</a>
-    {% else %}
-        <a class="w3-button w3-green" href="#">{{ current_page }}</a>
-    {% endif %}
+        {% if current_page != videogames.number %}
+            {% if query != "" %}
+                <a class="w3-button w3-hover-red" href="?page={{ current_page }}&{{ query }}">{{ current_page }}</a>
+            {% else %}
+                <a class="w3-button w3-hover-red" href="?page={{ current_page }}">{{ current_page }}</a>
+            {% endif %}
+        {% else %}
+            <a class="w3-button w3-green" href="#">{{ current_page }}</a>
+        {% endif %}
     {% endfor %}
     {% if videogames.has_next %}
-        <a href="?page={{ videogames.next_page_number }}" class="w3-button w3-hover-purple fa fa-angle-right"></a>
+        {% if query != "" %}
+            <a href="?page={{ videogames.next_page_number }}&{{ query }}" class="w3-button w3-hover-purple fa fa-angle-right"></a>
+        {% else %}
+            <a href="?page={{ videogames.next_page_number }}" class="w3-button w3-hover-purple fa fa-angle-right"></a>
+        {% endif %}
     {% else %}
         <a href="#" class="w3-button w3-hover-purple fa fa-angle-right w3-disabled"></a>
     {% endif %}

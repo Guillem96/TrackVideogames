@@ -21,7 +21,6 @@ $( document ).ready(function() {
             });
         },
         select: function (a, b) {
-            console.log(b);
             $(".vg-cover").attr("src", b.item.cover);
             id = b.item.id
         },
@@ -64,6 +63,8 @@ $( document ).ready(function() {
                 form.submit();
         });
 
-
     });
+
+    $('[data-toggle="tooltip"]').tooltip();
+
 });

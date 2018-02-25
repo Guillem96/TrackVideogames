@@ -6,6 +6,7 @@
 body {
     padding-bottom: 100px;
 }
+
 .footer {
     position: fixed;
     bottom: 0;
@@ -17,10 +18,12 @@ body {
 
 .gestiona {
     background-image: url("../img/video-games.jpg");
-    background-repeat:   no-repeat;
-    background-position: left center;
     height: 400px;
     color:black;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .note {
@@ -37,20 +40,22 @@ body {
 
 .reviews {
     background-image: url("../img/review-column.png");
-    background-size:     cover;                      /* <------ */
-    background-repeat:   no-repeat;
-    background-position: center center;  
     color: black;
     height: 350px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .forget {
     background-image: url("../img/forget.jpg");
-    background-size:     cover;                      /* <------ */
-    background-repeat:   no-repeat;
-    background-position: center center;  
     color: black;
     height: 350px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .homepage {
@@ -60,4 +65,38 @@ body {
 .homepage p {
     font-size: 20px;
     line-height: 30px;
+}
+
+
+.add-button {
+    position: absolute;
+    bottom: 80px;
+    right: 50px;
+}
+
+#review-form {
+    position: absolute !important;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+#pendent-form{
+    position: absolute !important;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.tooltip {
+    max-width: 300px;
+}
+
+.tooltip-inner {
+    font-size: 16px;
+    padding: 5px;
 }

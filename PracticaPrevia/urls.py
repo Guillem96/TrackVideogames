@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^accounts/login/$', login, name='login'),
     url(r'^accounts/logout/$',logout, name='logout'),
     url(r'^trackVideogames/', include('trackVideogames.urls', namespace='trackVideogames')),
+    url(r'^api/auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
 if settings.DEBUG:

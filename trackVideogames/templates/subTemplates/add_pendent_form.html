@@ -1,10 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% load staticfiles %}
+
+<div id="pendent-form" class="w3-modal w3-animate-bottom w3-card-4">
+    <div class="w3-modal-content w3-margin-bottom">
+        <header class="w3-container w3-dark-gray">
+        <span onclick="document.getElementById('pendent-form').style.display='none'" class="w3-button w3-display-topright" title="Close Modal">
+            <i class="fa fa-times"></i>
+        </span>
+        <h2><img src="{% static "img/icon.svg" %}" width="40"> Afegir un videojoc a la llsita de pendents</h2>
+    </header>
+    <form class="w3-container w3-padding pendent" method="post" action="">
+        <p>
+            <label class="w3-xlarge">Videojoc</label>
+            <div class="w3-row">
+                <div class="w3-twothird">
+                    <input id="vg-name-pendent" type="text" class="w3-input" placeholder="Títol videojoc">
+                </div>
+                <div class="w3-third w3-display-container">
+                    <img class="vg-cover w3-display-topmiddle w3-card-4" src="">
+                </div>
+            </div>
+        </p>
+        <p>
+            <label class="w3-xlarge">Data pendent de jugar</label>
+            <input type="date" id="date" class="w3-input" name="data-pendent">
+        </p>
+        <a class="w3-button w3-right w3-blue w3-margin-left add-pendent-button">Afegir a pendents</a>
+        <a class="w3-button w3-right w3-red" onclick="document.getElementById('pendent-form').style.display='none'">Cancel·lar</a>
+        {% csrf_token %}
+    </form>
+    </div>
+</div>
