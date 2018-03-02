@@ -14,7 +14,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="w3-margin-top w3-light-gray">
+    <div class="w3-margin-top w3-light-gray w3-display-container">
         <div class="w3-container w3-red">
             <h1><i class="fa fa-check"></i> Videojocs acabats</h1>
         </div>
@@ -25,8 +25,8 @@
             </div>
         {% endfor %}
         </div>
+        <button onclick="document.getElementById('review-form').style.display='block'" class="w3-button w3-xlarge w3-circle w3-red w3-card-4 add-button">+</button>
     </div>
-    <button onclick="document.getElementById('review-form').style.display='block'" class="w3-button w3-xlarge w3-circle w3-red w3-card-4 add-button">+</button>
     {% include 'subTemplates/review_game_form.html' %}
 {% endblock %}
 

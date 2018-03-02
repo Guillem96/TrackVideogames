@@ -3,13 +3,14 @@ from __future__ import unicode_literals
 import re
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import PermissionDenied
 from django.http import HttpResponseRedirect
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render_to_response
+from django.template.context_processors import csrf
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.views.generic import ListView
-from django.views.generic.edit import UpdateView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from rest_framework import permissions, generics
@@ -27,18 +28,7 @@ class LoginRequiredMixin(object):
         return super(LoginRequiredMixin, self).dispatch(*args, **kwargs)
 
 
-class CheckIsOwnerMixin(object):
-    def get_object(self, *args, **kwargs):
-        obj = super(CheckIsOwnerMixin, self).get_object(*args, **kwargs)
-        if not obj.user == self.request.user:
-            raise PermissionDenied
-        return obj
-
-
-class LoginRequiredCheckIsOwnerUpdateView(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
-    template_name = 'form.html'
-
-
+# Funció per paginar una llsita d'objectes en una ListView
 def pagination(objects, page, items_per_page=24):
     paginator = Paginator(objects, items_per_page)
 
@@ -170,6 +160,20 @@ def delete_video_game_review(request, pk):
 
     return HttpResponseRedirect(request.GET.get("next", "/trackVideogames"))
 
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect('/accounts/register/complete')
+
+    else:
+        form = UserCreationForm()
+        token = {}
+        token.update(csrf(request))
+        token['form'] = form
+
+    return render_to_response('../templates/registration/signup.html', token)
 
 # API REST Nomes per a l'autocomplete
 class IsOwnerOrReadOnly(permissions.IsAuthenticatedOrReadOnly):
@@ -183,7 +187,7 @@ class IsOwnerOrReadOnly(permissions.IsAuthenticatedOrReadOnly):
         return obj.user == request.user
 
 
-class APIVideoGamesList(generics.ListCreateAPIView):
+class APIVideoGamesList(IsOwnerOrReadOnly, generics.ListCreateAPIView):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly,)
     model = Videogame
     queryset = Videogame.objects.all()

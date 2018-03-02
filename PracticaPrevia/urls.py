@@ -19,11 +19,14 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
+from trackVideogames.views import HomePage, register
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/login/$', login, name='login'),
     url(r'^accounts/logout/$',logout, name='logout'),
+    url(r'^accounts/signup$', register, name='register'),
+    url(r'^$', HomePage.as_view(), name='home'),
     url(r'^trackVideogames/', include('trackVideogames.urls', namespace='trackVideogames')),
     url(r'^api/auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

@@ -1,4 +1,32 @@
+var id = 0;
+
 $( document ).ready(function() {
+    $("#vg-name-pendent").autocomplete({
+        source: function( request, response ) {
+            $.ajax({
+                url: "/trackVideogames/api/video_games/",
+                dataType: 'json',
+                data : {
+                    q: request.term
+                },
+                success: function( data ) {
+                    response( $.map( data, function( item ) {
+                            return {
+                                label: item.name ,
+                                value: item.name,
+                                cover: item.cover,
+                                id: item.videogame_id
+                            }
+                    }));
+                },
+            });
+        },
+        select: function (a, b) {
+            $(".vg-cover").attr("src", b.item.cover);
+            id = b.item.id
+        },
+        minLength:2,
+    });
 
 
     $(".add-pendent-button").click(function() {
@@ -21,6 +49,8 @@ $( document ).ready(function() {
         });
 
     });
+
+
 
 
     $(".create-review-button").click(function () {
@@ -63,7 +93,6 @@ $( document ).ready(function() {
 
 });
 
-var id = 0;
 
 function addToComplete(pk, name) {
     id = pk;
